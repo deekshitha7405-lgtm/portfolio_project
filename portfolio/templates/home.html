@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ student.name }}'s Portfolio</title>
+
+    <!-- Link to your CSS file --><
+   <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+</head>
+<body>
+
+    <h1>{{ student.name }}</h1>
+    <p>{{ student.bio }}</p>
+
+    <h2>Skills</h2>
+    <ul>
+        {% for s in skills %}
+            <li>{{ s.name }} — {{ s.level }}%</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Projects</h2>
+    <ul>
+        {% for p in projects %}
+            <li>{{ p.title }} — <a href="{{ p.link }}">View</a></li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
