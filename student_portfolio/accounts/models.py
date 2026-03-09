@@ -28,3 +28,28 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} Profile"
+# Project Model (Portfolio Projects)
+class Project(models.Model):
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="projects")
+
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+
+    github_link = models.URLField(blank=True)
+    live_demo = models.URLField(blank=True)
+
+    image = models.ImageField(upload_to="project_images/", blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    visibility = models.CharField(
+        max_length=10,
+        choices=[
+            ('public', 'Public'),
+            ('private', 'Private')
+        ],
+        default='public'
+    )
+
+    def __str__(self):
+        return self.title

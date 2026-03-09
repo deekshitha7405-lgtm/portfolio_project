@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import ProjectForm
 
-# Create your views here.
+def add_project(request):
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = request.user
+            project.save()
+            return redirect('dashboard')
+    else:
+        form = ProjectForm()
+
+    return render(request, 'portfolio/add_project.html', {'form': form})
