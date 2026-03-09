@@ -1,5 +1,13 @@
 from django.db import models
 from accounts.models import CustomUser
+from django.contrib.auth.models import AbstractUser
+
+
+class CustomUser(AbstractUser):
+    is_email_verified = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.username
 
 
 class Project(models.Model):
