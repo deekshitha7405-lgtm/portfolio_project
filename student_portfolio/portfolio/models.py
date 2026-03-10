@@ -3,10 +3,10 @@ from accounts.models import CustomUser
 from django.contrib.auth.models import AbstractUser
 
 
-class CustomUser(AbstractUser):
-    is_email_verified = models.BooleanField(default=False)
+#class CustomUser(AbstractUser):
+is_email_verified = models.BooleanField(default=False)
 
-    def __str__(self):
+def __str__(self):
         return self.username
 
 
